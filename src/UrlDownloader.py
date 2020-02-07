@@ -5,19 +5,25 @@
 
 #Libraries needed for this program.
 import urllib.request
-
+import sys
 #Download the content between <p> and </p> html tags given a url.
 class URLDownloader():
+
+	def __init__(self,args):
+		self.args = args
 	
-	def getPlainHtml(self, url):
+	def getPlainHtml(self, args):
 		try:
-			response = urllib.request.urlopen(url)		#Open the given url. [1]
+			if self.args.verbose: print("[INFO] Downloading URL ...",end="\r",flush=True)
+			response = urllib.request.urlopen(self.args.url)		#Open the given url. [1]
 			weirdHtml = response.read()					#Extracts html in bytes. [1]
 			plainHtml = weirdHtml.decode("utf-8")		#Decode it to utf-8 format.
 			
-		except Exception as e: 	#In the case of some error raise it. [2]
-			raise e
+		except urllib.error.URLError: 	#In the case of some error raise it. [2]
+			print("[ERROR] {0} can't be reached. Finishing execution.".format(self.args.url))
+			sys.exit()
 			
+		if self.args.verbose: print("\033[K[INFO] Downloading URL ... Done")
 		return plainHtml	#Return the html.
 			
 """	References:

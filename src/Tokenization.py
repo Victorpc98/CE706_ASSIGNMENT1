@@ -9,22 +9,7 @@ class Tokenization():
 	This class solves the Part 1 Exercises.
 	"""
 	def __init__(self):
-		self.url_target = "https://www.theguardian.com/music/2018/oct/19/while-my-guitar-gently-weeps-beatles-george-harrison"
 		self.lemmatizer = WordNetLemmatizer()
-
-	def getText(self):
-		"""
-		Gets the text contained inside the <p></p> tags from the given url_target. Removes the links and returns a string
-		of all the p tags found.
-		"""
-
-		url = URLDownloader()
-		html = url.getPlainHtml(self.url_target)
-		text = re.findall("<p>(.*?)<\/p>", html)
-		result = ' '.join(text)
-		result = self.removeLinks(result)
-
-		return result
 
 	def getTokensNopunct(self, text):
 		"""
