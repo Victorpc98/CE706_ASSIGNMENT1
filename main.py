@@ -25,7 +25,7 @@ class Main():
         parser.add_argument("-v","--verbose",action="store_true", help="Program Verbosity",default=False)
         self.args = parser.parse_args()
         if self.args.verbose: print("[INFO] Initiating execution ...")
-        
+
         self.parser = Parser(self.args)
         parsed_text = self.parser.parse()
 

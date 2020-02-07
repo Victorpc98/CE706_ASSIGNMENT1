@@ -6,5 +6,3 @@
 #Libraries needed for this program.
 import os
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__)) # project root
-DATA_DIR = ROOT_DIR + "/src/assignment1/data/"
-OUT_DIR = ROOT_DIR + "/output/"
