@@ -1,6 +1,7 @@
 from src.UrlDownloader import URLDownloader
 from bs4 import BeautifulSoup
 from bs4.element import Comment
+from definitions import OUT_DIR
 
 """
 This class will Parse a given URL and return all the visible text in it. 
@@ -23,7 +24,12 @@ class Parser():
         texts = soup.findAll(text=True)
         visible_texts = filter(self.tag_visible, texts)  
         if self.args.verbose: print("\033[K[INFO] Parsing HTML ... Done")
-        return "\n".join(t.strip() for t in visible_texts)
+        text = "\n".join(t.strip() for t in visible_texts)
+        with open(OUT_DIR + "html_parsing.txt", 'w+') as f:
+            f.write(text)
+        
+        f.close()
+        return text
 
     """
     Checks if a tag is considered visible or not
