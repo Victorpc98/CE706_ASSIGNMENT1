@@ -2,7 +2,6 @@ import nltk
 from nltk import re
 from nltk import word_tokenize
 from nltk.stem import WordNetLemmatizer
-from src.assignment1.UrlDownloader import URLDownloader
 
 class Tokenization():
 	"""

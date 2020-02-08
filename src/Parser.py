@@ -23,7 +23,7 @@ class Parser():
         texts = soup.findAll(text=True)
         visible_texts = filter(self.tag_visible, texts)  
         if self.args.verbose: print("\033[K[INFO] Parsing HTML ... Done")
-        return " ".join(t.strip() for t in visible_texts)
+        return "\n".join(t.strip() for t in visible_texts)
 
     """
     Checks if a tag is considered visible or not
