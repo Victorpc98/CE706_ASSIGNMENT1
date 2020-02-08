@@ -17,7 +17,9 @@ TF.IDF : Accentuates terms that are important in the documents
 """
 from src.Parser import Parser
 from src.Tokenization import Tokenization
-from nltk import FreqDist
+from src.Preprocessing import Preprocessing
+from src.KeywordsFilter import KeywordsFilter
+from src.Pos import POS
 
 class Main():
 
@@ -32,74 +34,14 @@ class Main():
 		self.parser = Parser(self.args)
 		parsed_text = self.parser.parse()
 
-		#print()
-		#print(parsed_text)
-		#print()
+		preprocesser = Preprocessing(self.args)
+		tokens,documents = preprocesser.process(parsed_text)
 
-		print()
-		#Split the text in sentences and remove empty strings.
-		self.documents = [s.lower() for s in parsed_text.split("\n") if s]
-		self.N = len(self.documents)
-		
-		#print(self.N)
-		#print(self.documents)
-		#print()
+		pos = POS(self.args)
+		posTags = pos.tagPosTokens(tokens)
 
-		self.tokenizer = Tokenization()
-		tokens = []
-
-		for doc in self.documents:
-			
-			currentTokens = self.tokenizer.getTokensNopunct(doc)
-			tokens.extend(currentTokens)
-		
-		#print()
-		#print(tokens)
-		#print()
-		#print(len(tokens))
-		#print()
-		
-		posTags = self.tokenizer.tagPosTokens(tokens, "POS")
-		
-		
-		self.tf_idf(tokens)
-		
-
-	#Returns a dictionary. Get frequency of an element using freqdist[token]
-	def termFrequency(self, tokens):
-		
-		fdist = FreqDist(tokens)
-		
-		return fdist
-		
-	#Returns a dictionary containing all dft.
-	def inverseDocFrequency(self, tokens):
-
-		df = {}
-		
-		
-		for t in tokens:
-		
-			count = 0
-			
-			for doc in self.documents:
-			
-				if(t in doc):
-					count += 1
-				
-			df[t] = count
-		
-		return df
-		
-	def tf_idf(self, tokens):
-
-		result = {}
-		
-		tf = self.termFrequency(tokens)
-		df = self.inverseDocFrequency(tokens)
-		
-		print(tf["mediaeval"])
-		print(df["mediaeval"])
+		keywords_filter = KeywordsFilter(self.args)
+		keywords_filter.filter(tokens,documents)
 
 
 if __name__ == "__main__":
