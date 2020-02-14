@@ -2,7 +2,7 @@ from nltk import FreqDist
 from nltk.corpus import stopwords
 from definitions import OUT_DIR
 import math
-#import pandas as pd
+import pandas as pd
 
 class KeywordsFilter():
 
@@ -16,32 +16,56 @@ class KeywordsFilter():
 
 		tokens = self.remove_stopwords(tokens) # Remove stopwords
 		
-		# Convert to set so duplicates tokens are delated
-		vocabulary = set(tokens)
+		# Convert to set so duplicates tokens are delated. Tokens with length equal 1 must be removed.
+		vocabulary = { v for v in set(tokens) if len(v) > 1 }
 		
 		tf = self.termFrequency(vocabulary, documents) # Frequency for each token
-		print(list(tf.items())[0])
-		idf = self.inverseDocFrequency(vocabulary, documents)
-		
+		#print(list(tf.items())[0])
+		idf = self.inverseDocFrequency(vocabulary, documents)	
+		#print(idf)	
 		tfidf = self.tf_idf(vocabulary, tf, idf)
-		
+		#print(vocabulary)
+		#print(list(tfidf.items())[0])
+		#print(len(tfidf))
+				
 		res = []
-		"""
-		for t in tokens: # for each token compute dft, idf and tf_idf
-			dft = self.documentFrequencyTerm(t,documents)
-			idf = self.inverseDocFrequency(dft,t,documents)
-			tf_idf = self.tfIdf(tf[t],idf)
-			res.append({"Token": t, "TF" : tf[t], "DFT": dft, "IDF" : idf, "TF_IDF" : tf_idf})
+		
+		data = pd.DataFrame({"Words" : sorted(vocabulary)})
+		data["IDF"] = [idf[key] for key in sorted(idf.keys())]
+		
+		docCount = 0
+		
+		for doc, value in tfidf.items():
+		
+			sortedList = sorted(value, key=lambda tup: tup[0])
+			
+			#print(sortedList)
+			
+			tf_idf_list = []
+			
+			for token, tf_idf in sortedList:
+				tf_idf_list.append(tf_idf)
+			
+			docCount += 1
+			data["doc"+str(docCount)] = tf_idf_list
+			
+
+		data.to_csv(OUT_DIR + 'tf_idf.csv')
+		
+		"""	
+		res.append({"Token": t, "TF" : tf[t], "DFT": dft, "IDF" : idf, "TF_IDF" : tf_idf})
 
 		df = pd.DataFrame.from_dict(res,orient='columns') # Convert to dataframe and save to csv
 		df = df.set_index('Token')
 		df = df.sort_values("TF_IDF",ascending=False)
 		df.to_csv(OUT_DIR + 'tf_idf.csv')
 
-		self.bestKeywords(df)
-		self.bestSentences(df,documents)
-		if self.args.verbose: print("\033[K[INFO] Selecting Keywords ... Done")
 		"""
+		
+		#self.bestKeywords(data)
+		#self.bestSentences(data, documents)
+		if self.args.verbose: print("\033[K[INFO] Selecting Keywords ... Done")
+		
         
 	def termFrequency(self, vocabulary, documents):
 		
@@ -81,7 +105,7 @@ class KeywordsFilter():
 		
 			count = 0
 
-			for doc in documents:
+			for doc in documents:				
 				if(token in doc):
 					count += 1
 			
@@ -94,9 +118,9 @@ class KeywordsFilter():
 		
 		tf_idf_table = {}
 
-		for (doc,value) in tf:
+		for doc, value in tf.items():
 
-			tf_idf_vector = []
+			tf_idf_vector = []			
 			
 			for item in value:
 			
@@ -105,16 +129,18 @@ class KeywordsFilter():
 				
 				tf_idf = tf * idf[token]
 
-				tf_vector.append( (token, tf_idf) )
+				tf_idf_vector.append( (token, tf_idf) )
 
-			tf_table[doc] = tf_vector
+			tf_idf_table[doc] = tf_idf_vector
+		
+		return tf_idf_table
 
 	# Removes stopwords from the given list of tokens
 	def remove_stopwords(self,tokens):
 		return [word for word in tokens if word not in stopwords.words('english')]
 
-	def bestKeywords(self,df):
-		keywords = df.head(10).index.values.tolist()
+	def bestKeywords(self, data):
+		keywords = data.head(10).index.values.tolist()
 		with open(OUT_DIR + "best_keywords.txt","w+") as f:
 			f.write("\n".join(keywords))
 

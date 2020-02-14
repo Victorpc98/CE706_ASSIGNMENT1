@@ -11,7 +11,7 @@ class Preprocessing():
 	def process(self,text):
 		if self.args.verbose: print("[INFO] Pre-processing HTML ...",end="\r",flush=True)
 		documents = [s.lower() for s in re.split(r'\n|\.',text) if s]
-		print(documents)
+
 		N = len(documents)
 
 		tokens = list(itertools.chain.from_iterable([ self.tokenizer.getTokensNopunct(doc) for doc in documents]))
