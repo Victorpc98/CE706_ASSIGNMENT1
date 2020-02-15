@@ -1,3 +1,6 @@
+#Victor Perez - vp19885  / 1900232
+#Joel Valiente - jv19228 / 1900289
+
 import argparse
 """
 Count all the terms and determine the most important terms. Prepositions are NOT important. 
@@ -49,8 +52,6 @@ class Main():
 		
 		stemming = Stemming(self.args)
 		stemming.stemmVocabulary(vocabulary)
-		
-		
 
 
 if __name__ == "__main__":
