@@ -20,6 +20,7 @@ from src.Tokenization import Tokenization
 from src.Preprocessing import Preprocessing
 from src.KeywordsFilter import KeywordsFilter
 from src.Pos import POS
+from src.Stemming import Stemming
 
 class Main():
 
@@ -35,13 +36,21 @@ class Main():
 		parsed_text = self.parser.parse()
 
 		preprocesser = Preprocessing(self.args)
-		tokens,documents = preprocesser.process(parsed_text)
+		tokens, documents = preprocesser.process(parsed_text)
+		
 
 		pos = POS(self.args)
 		posTags = pos.tagPosTokens(tokens)
 
 		keywords_filter = KeywordsFilter(self.args)
-		keywords_filter.filter(tokens,documents)
+		keywords_filter.filter(tokens, documents)
+		
+		vocabulary = keywords_filter.getVocabulary()
+		
+		stemming = Stemming(self.args)
+		stemming.stemmVocabulary(vocabulary)
+		
+		
 
 
 if __name__ == "__main__":

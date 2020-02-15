@@ -13,95 +13,78 @@ class KeywordsFilter():
 
 		if self.args.verbose:
 			print("[INFO] Selecting Keywords ...",end="\r",flush=True)
-
-		tokens = self.remove_stopwords(tokens) # Remove stopwords
 		
 		# Convert to set so duplicates tokens are delated. Tokens with length equal 1 must be removed.
-		vocabulary = { v for v in set(tokens) if len(v) > 1 }
+		self.vocabulary = { v for v in set(tokens) if len(v) > 1 }
 		
-		tf = self.termFrequency(vocabulary, documents) # Frequency for each token
-		#print(list(tf.items())[0])
-		idf = self.inverseDocFrequency(vocabulary, documents)	
-		#print(idf)	
-		tfidf = self.tf_idf(vocabulary, tf, idf)
-		#print(vocabulary)
-		#print(list(tfidf.items())[0])
-		#print(len(tfidf))
+		#Some documents are just a letter. Delete them.
+		documents = [ d for d in documents if len(d) > 1 ]
+		
+		tf = self.termFrequency(documents) # Frequency for each token
+		idf = self.inverseDocFrequency(documents)	
+		tfidf = self.tf_idf(tf, idf)
 				
 		res = []
 		
-		data = pd.DataFrame({"Words" : sorted(vocabulary)})
+		data = pd.DataFrame({"Words" : sorted(self.vocabulary)})
 		data["IDF"] = [idf[key] for key in sorted(idf.keys())]
-		
-		docCount = 0
 		
 		for doc, value in tfidf.items():
 		
 			sortedList = sorted(value, key=lambda tup: tup[0])
 			
-			#print(sortedList)
-			
 			tf_idf_list = []
 			
 			for token, tf_idf in sortedList:
 				tf_idf_list.append(tf_idf)
+						
+			data[doc] = tf_idf_list
 			
-			docCount += 1
-			data["doc"+str(docCount)] = tf_idf_list
-			
 
-		data.to_csv(OUT_DIR + 'tf_idf.csv')
+		data.to_csv(OUT_DIR + 'tf_idf.csv')			
 		
-		"""	
-		res.append({"Token": t, "TF" : tf[t], "DFT": dft, "IDF" : idf, "TF_IDF" : tf_idf})
-
-		df = pd.DataFrame.from_dict(res,orient='columns') # Convert to dataframe and save to csv
-		df = df.set_index('Token')
-		df = df.sort_values("TF_IDF",ascending=False)
-		df.to_csv(OUT_DIR + 'tf_idf.csv')
-
-		"""
-		
-		#self.bestKeywords(data)
-		#self.bestSentences(data, documents)
+		self.bestKeywords(data, idf)
+		self.bestSentences(data, documents)
 		if self.args.verbose: print("\033[K[INFO] Selecting Keywords ... Done")
 		
+	def getVocabulary(self):
+		
+		return self.vocabulary 
         
-	def termFrequency(self, vocabulary, documents):
+	def termFrequency(self, documents):
 		
 		tf_table = {}
 
 		for doc in documents:
 
-			tf_vector = []
+			tf_vector = []			
 
-			for token in vocabulary:
+			for token in self.vocabulary:
 
 				#Tuple (token, tf)
 				tf_vector.append( (token, doc.count(token)) )
 
 			tf_table[doc] = tf_vector
 
-
 		return tf_table
 	
 
 	# Computes the IDF as [log(N/dft)]. Where N is the # of documents 
 	# in the collection and dft is the Document Term Frequency
-	def inverseDocFrequency(self, vocabulary, documents):
+	def inverseDocFrequency(self, documents):
 	
-		df_vector = self.documentFrequencyTerm(vocabulary, documents)
+		df_vector = self.documentFrequencyTerm(documents)
 		N = len(documents)
 		idf_vector = { k: math.log(N/v) for (k,v) in df_vector.items() }
 
 		return idf_vector
 
 	# (DFT) Returns the number of documents where the term appears at
-	def documentFrequencyTerm(self, vocabulary, documents):
+	def documentFrequencyTerm(self, documents):
 
 		df_vector = {}
 		
-		for token in vocabulary:
+		for token in self.vocabulary:
 		
 			count = 0
 
@@ -114,7 +97,7 @@ class KeywordsFilter():
 		return df_vector
 
 	# Computes tf.idf 
-	def tf_idf(self, vocabulary, tf, idf):
+	def tf_idf(self, tf, idf):
 		
 		tf_idf_table = {}
 
@@ -139,25 +122,41 @@ class KeywordsFilter():
 	def remove_stopwords(self,tokens):
 		return [word for word in tokens if word not in stopwords.words('english')]
 
-	def bestKeywords(self, data):
-		keywords = data.head(10).index.values.tolist()
-		with open(OUT_DIR + "best_keywords.txt","w+") as f:
-			f.write("\n".join(keywords))
+	def bestKeywords(self, data, idf):		
+		
+		total_tf_idf = {}
+		
+		for v in self.vocabulary:
+		
+			row = data.loc[data["Words"] == v]
+			value = row.sum(axis=1).values[0] - idf[v]
+			total_tf_idf[v] = value
+		
+		f = open(OUT_DIR + "best_keywords.txt","w+")
+		
+		for k, v in sorted(total_tf_idf.items(), key= lambda kv: kv[1], reverse=True):
+			f.write(k + " " + str(v) + "\n")
+			
+		f.close()
+		
 
-	def bestSentences(self,df,documents):
-		words = df.index.values.tolist()
-		res = []
+	def bestSentences(self, data, documents):
+	
+		
+		total_tf_idf = {}
+		maxDocCount = len(data.columns)-1
+
 		for doc in documents:
-			avg = 0
-			for w in words:
-				if w in doc:
-				    avg += df.iloc[df.index == w].IDF[0]
-			res.append({"Document" : doc, "Importance" : avg})
-
-		a = pd.DataFrame.from_dict(res,orient='columns')
-		a.set_index("Document")
-		a = a.sort_values("Importance",ascending=False)
-		a.to_csv(OUT_DIR + 'best_sentences.csv',index=False)
-
+		
+			value = data[doc].sum()
+			total_tf_idf[doc] = value				
+		
+		f = open(OUT_DIR + "best_sentences.txt","w+")
+		
+		for k, v in sorted(total_tf_idf.items(), key= lambda kv: kv[1], reverse=True):
+			f.write(k + " -> " + str(v) + "\n")
+			
+		f.close()
                 
 #https://stackoverflow.com/a/8272462
+#https://stackoverflow.com/a/613218

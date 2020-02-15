@@ -1,0 +1,131 @@
+researchers find task interesting work areas human perception impact multimedia perception image video interestingness memorability attractiveness aesthetics prediction event detection multimedia affect perceptual analysis multimedia content analysis machine learning though limited -> 152.94025499976675
+come set pre-extracted features dense sift hog descriptors lbp gist color histogram mfcc fc7 layer alexnet c3d features etc -> 92.46493946704022
+effective memorability prediction models also push forward semantic understanding multimedia content putting human cognition perception center multimedia analysis -> 89.47719385335682
+dataset composed 10,000 soundless short videos extracted raw footage used professionals creating content particular commercials -> 78.54615055962245
+applications make use information predicted memorability important understand memorability well enough able avoid systems hyper-optimized viewer responses -> 76.92756314249334
+like aspects related video relevance aesthetics interestingness memorability regarded useful help make choice competing videos -> 75.09046499267622
+video consists coherent unit terms meaning associated two scores memorability refer probability remembered two different durations memory retention -> 73.16517413082364
+task participants provided extensive dataset videos accompanied memorability annotations well pre-extracted state-of-the-art visual features -> 68.10432922590373
+motivation task growth recent years amount multimedia content shared consumed via online platforms -> 67.41122319845394
+increasingly important understand makes videos memorable order keep use automatic processing techniques evenhanded -> 66.38686768039231
+number different application areas benefit deeper understanding makes videos memorable others less -> 63.76701019132557
+ground truth collected recognition tests thus results objective measurement memory performance -> 61.98918666352648
+enhancing usefulness multimedia requires new ways organize–in particular recommend retrieve–digital content -> 61.73854446884906
+makes photograph memorable ieee transactions pattern analysis machine intelligence 36 7 2014 1469–1482 -> 60.5792381115087
+5 junwei han changyuan chen ling shao xintao hu jungong han tianming liu -> 60.575155547434996
+areas include recommendation retrieval online platforms already mentioned also advertising filmmaking education -> 59.36406527534019
+data set used 2019 2018 2018 testset ground truth data released -> 58.202593206406405
+year task focuses understanding patterns data improving ability algorithms capture patterns -> 56.81610188678827
+models evaluated standard evaluation metrics used ranking tasks spearman rank correlation -> 56.55207400523438
+please note dataset predicting long-term video memorability publicly available 7 following address -> 55.0134413798264
+predicted memorability scores videos compared ground truth memorability scores using classic evaluation metrics e -> 54.32171364592068
+6 sumit shekhar dhruv singal harvineet singh manav kedia akhil shetty -> 48.79445172322174
+requires participants automatically predict memorability scores videos reflect probability video remembered -> 47.456293782889205
+3 phillip isola jianxiong xiao devi parikh antonio torralba aude oliva -> 46.7150101815419
+participants required train computational models capable inferring video memorability visual content -> 46.495098492421086
+mediaeval 2019 workshop france near nice 27-29 october 2019 -> 42.63453587971825
+objective measure minutes memorization videos 24 72 hours later -> 42.03287895441768
+multi multimedia speech audio visual content tags users context -> 41.21958606810969
+videomem constructing analyzing predicting short-term long-term video memorability -> 40.383187792237244
+working notes proceedings mediaeval 2018 workshop -> 38.93626880930091
+proceedings ieee conference computer vision pattern recognition -> 38.88299600103643
+working notes paper due 30 september 2019 -> 37.961007248047636
+task focuses problem predicting memorable video viewers -> 36.58183035469662
+2 aditya khosla akhil raju antonio torralba aude oliva -> 36.124343220225626
+optionally descriptive titles attached videos may used -> 34.39854171878936
+4 hammad squalli-houssaini ngoc duong marquant gwenaëlle claire-hélène demarty -> 33.59861457591737
+ricardo savii federal university são paulo brazil -> 33.25502487152728
+videos shared creative commons licenses allow redistribution -> 33.23397146232946
+ieee transactions cybernetics 45 8 2015 1692–1703 -> 31.711544926884983
+memorability measured using recognition tests -> 31.64170135351772
+learning computational models video memorability fmri brain imaging -> 31.536340837859896
+show recall learning makes videos memorable -> 30.622650887685797
+mihai gabriel constantin university politehnica bucharest romania -> 29.959188005522957
+understanding predicting image memorability large scale -> 29.030814900869157
+duong mats sjöberg bogdan ionescu thanh-toan -> 28.46753312874524
+mediaeval benchmarking initiative multimedia evaluation -> 28.165984561720315
+sophia antipolis france 29-31 october 2018 -> 26.645002000850432
+annotating understanding predicting long-term video memorability -> 25.85276107052121
+quang-khanh-ngoc duong technicolor france -> 25.759482927643035
+liviu-daniel ştefan university politehnica bucharest romania -> 25.01042811514479
+audio speech language processing icassp -> 24.856277435317534
+bogdan ionescu university politehnica bucharest romania -> 23.6241337540249
+test data release 03 june 2019 -> 23.58473120615887
+2020 mediaeval multimedia benchmark -> 22.559263799907242
+deep learning predicting image memorability -> 20.609201639922397
+development data release 1 may 2019 -> 20.022265676900595
+runs due 20 september 2019 -> 19.233808316536322
+1 romain cohendet claire-hélène demarty ngoc q -> 18.570013347988905
+8 romain cohendet claire-hélène demarty ngoc q -> 18.570013347988905
+mediaeval 2018 predicting media memorability -> 18.493420747817357
+mats sjöberg csc finland -> 18.408745200392783
+xavier alameda-pineda inria france -> 18.185601649078574
+com/dream/research-innovation/movie-memorability-dataset -> 17.69906129670381
+claire-hélène demarty technicolor france -> 17.65372261611475
+no-audio speech turns -> 17.597814984176452
+2019 predicting media memorability task -> 17.342955097538994
+multimedia retrieval icmr -> 15.922657215558951
+task motivation background -> 15.007547818730629
+emotion themes music -> 14.846279671134505
+outputs prediction models -> 14.447932030795204
+eyes ears together -> 14.15313249057456
+datasets -> 13.937106407029216
+lifelogging wellbeing -> 13.747667382466394
+recommended reading -> 13.747667382466394
+computer vision iccv -> 13.459985310014615
+scene change -> 13.05452020190645
+spearman rank correlation -> 12.76683812945467
+videoclef 2009 -> 12.427330989138301
+videoclef 2008 -> 12.427330989138301
+medico multimedia -> 11.667044505740728
+multimedia recsys -> 11.667044505740728
+multimedia satellite -> 11.667044505740728
+ground truth evaluation -> 10.464253036460622
+mediaeval 2016 -> 10.133114145814773
+mediaeval 2013 -> 10.133114145814773
+mediaeval 2012 -> 10.133114145814773
+mediaeval 2011 -> 10.133114145814773
+mediaeval 2010 -> 10.133114145814773
+pixel privacy -> 9.897519780756337
+open science -> 9.897519780756337
+target group -> 9.897519780756337
+https //www -> 9.897519780756337
+mediaeval 2017 -> 9.439966965254827
+2730–2739 -> 9.204372600196391
+mediaeval 2014 -> 9.034501857146662
+mediaeval 2015 -> 8.746819784694882
+duong c-h -> 8.288081868322237
+mediaeval 2019 -> 8.053672604134936
+videos mediaeval -> 7.966661227145307
+acm int -> 7.951609631701023
+mediaeval 2018 -> 7.9358895684785535
+task description -> 7.412613130968337
+task organizers -> 7.412613130968337
+task auxiliaries -> 7.412613130968337
+task schedule -> 7.412613130968337
+technicolor -> 7.412613130968336
+sports video -> 6.719465950408392
+ieee int -> 6.342171719266923
+2017 -> 5.707865038729911
+media memorability -> 5.378510269877562
+2014 -> 5.302399930621746
+2015 -> 5.014717858169965
+home -> 4.948759890378168
+gamestory -> 4.948759890378168
+participate -> 4.948759890378168
+acknowledgments -> 4.948759890378168
+2390–2398 -> 4.948759890378168
+yadati n -> 4.948759890378168
+engilberge -> 4.948759890378168
+arxiv:1812 -> 4.948759890378168
+01973 -> 4.948759890378168
+contact -> 4.948759890378168
+2018 -> 4.203787641953637
+cohendet k -> 3.8501476017100584
+mediaeval -> 3.7321019265249165
+conf -> 3.5624655292582776
+demarty -> 3.339321977944068
+duong -> 3.339321977944068
+proc -> 3.002849741322855
+data -> 2.6461747973841225
+7 r -> 0.0
