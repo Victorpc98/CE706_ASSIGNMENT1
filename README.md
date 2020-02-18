@@ -1,6 +1,23 @@
 # CE706_ASSIGNMENT1
 CE706 - INFORMATION RETRIEVAL ASSIGNMENT 1
 
+# How to Run
+
+To run the project you must install all the dependencies first by running the following command on your linux terminal.
+
+    pip3 install -r requirements.txt
+
+Once all the dependencies are installed, you can execute the code as above.
+
+    python3 main.py --url <your_url_to_parse>
+
+If you want the system to be verbose you can add the --verbose flag as above.
+
+    python3 main.py --url <your_url_to_parse> --verbose
+
+Once the code finished the execution you can check the outputs inside the output/ folder
+
+
 # Src Code
 
 ## URLDownloader
@@ -29,4 +46,7 @@ The Pos module will compute the Part Of Speach Tags for every token
 The KeywordsFilter module will compute wich words and sentences are more important for indexing. To do so, it will compute
 the Inverse Document Frequency (IDF) as log(N/DFT), where
 
-* N : The number
+* N : The number 
+
+## Stemming 
+The Stemming module is dedicated to compute the stems for every token. It uses the WordNetLemmatizer class from the nltk module to compute the stems. 
