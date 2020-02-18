@@ -1,7 +1,11 @@
 # CE706_ASSIGNMENT1
-CE706 - INFORMATION RETRIEVAL ASSIGNMENT 1
 
-# How to Run
+## Members
+
+* Víctor Pérez Cester (vp19885@essex.ac.uk)
+* Joel Valiente Sanchez (jv19228@essex.ac.uk)
+
+## How to Run
 
 To run the project you must install all the dependencies first by running the following command on your linux terminal.
 
@@ -18,18 +22,18 @@ If you want the system to be verbose you can add the --verbose flag as above.
 Once the code finished the execution you can check the outputs inside the output/ folder
 
 
-# Src Code
+## Src Code
 
-## URLDownloader
+### URLDownloader
 
 The URLDownloader module will download a given URL and return the html as plain text. 
 
-## Parser
+### Parser
 
 The Parser module will download a given URL using the URLDownloader module and parse it's content to extract all the visible
 data. 
 
-## Preprocessing
+### Preprocessing
 
 The Preprocessing module will receive a plain text and preprocess it, separating it in documents and tokens from the collection.
 
@@ -37,16 +41,16 @@ The Preprocessing module will receive a plain text and preprocess it, separating
 * A document is every line or sentence in the HTML
 * A token is every word contained in a document
 
-## Pos
+### Pos
 
 The Pos module will compute the Part Of Speach Tags for every token
 
-## KeywordsFilter
+### KeywordsFilter
 
 The KeywordsFilter module will compute wich words and sentences are more important for indexing. To do so, it will compute
 the Inverse Document Frequency (IDF) as log(N/DFT), where
 
 * N : The number 
 
-## Stemming 
+### Stemming 
 The Stemming module is dedicated to compute the stems for every token. It uses the WordNetLemmatizer class from the nltk module to compute the stems. 
