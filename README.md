@@ -2,8 +2,8 @@
 
 ## Members
 
-* Víctor Pérez Cester (vp19885@essex.ac.uk)
-* Joel Valiente Sanchez (jv19228@essex.ac.uk)
+* Víctor Pérez Cester 	(vp19885@essex.ac.uk) ->	1900232
+* Joel Valiente Sanchez (jv19228@essex.ac.uk) ->	1900289
 
 ## How to Run
 
@@ -19,10 +19,11 @@ If you want the system to be verbose you can add the --verbose flag as above.
 
     python3 main.py --url <your_url_to_parse> --verbose
 
-Once the code finished the execution you can check the outputs inside the output/ folder
+Once the code finished the execution you can check the outputs inside the output/ folder.
 
 
 ## Src Code
+Provided in /src/ folder.
 
 ### URLDownloader
 
@@ -43,14 +44,17 @@ The Preprocessing module will receive a plain text and preprocess it, separating
 
 ### Pos
 
-The Pos module will compute the Part Of Speach Tags for every token
+The Pos module will compute the Part Of Speach Tags for every token.
 
 ### KeywordsFilter
 
 The KeywordsFilter module will compute wich words and sentences are more important for indexing. To do so, it will compute
 the Inverse Document Frequency (IDF) as log(N/DFT), where
 
-* N : The number 
+* N : The number of documents in our collection.
+* DFT: Document Frequency Term
+
+The Term Frequency table will be computed as well and, mixing both results, the table TF-IDF will be computed.
 
 ### Stemming 
 The Stemming module is dedicated to compute the stems for every token. It uses the WordNetLemmatizer class from the nltk module to compute the stems. 

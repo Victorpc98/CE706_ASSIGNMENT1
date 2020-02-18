@@ -221,10 +221,10 @@ class KeywordsFilter():
 		#Close the file
 		f.close()
                 
-""""
+"""
 	References:
                 
 	Term frequency:	https://stackoverflow.com/a/8272462
 	Sort dictionary by values:	https://stackoverflow.com/a/613218
 	
-""""
+"""
