@@ -2,8 +2,8 @@
 
 ## Members
 
-* Víctor Pérez Cester 	(vp19885@essex.ac.uk) ->	1900232
-* Joel Valiente Sanchez (jv19228@essex.ac.uk) ->	1900289
+* Víctor Pérez Cester 	(vp19885@essex.ac.uk) 
+* Joel Valiente Sanchez (jv19228@essex.ac.uk) 
 
 ## How to Run
 
